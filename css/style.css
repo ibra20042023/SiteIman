@@ -1,0 +1,706 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Yeseva+One&display=swap');
+
+body {
+  margin: 0;
+  background: #f4f4f4;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  background: #ffe0f0;
+  box-shadow: 0 1px 8px rgba(179,0,89, 0.06);
+  z-index: 10;
+}
+.navbar ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+}
+.navbar li {
+  margin: 0 40px;
+}
+.navbar a {
+  text-decoration: none;
+  color: #b30059;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 18px 0;
+  display: block;
+  transition: color 0.2s;
+}
+.navbar a:hover {
+  color: #e75480;
+}
+
+.accueil-section {
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffe0f0;
+}
+.header-nom {
+  color: #b30059;
+  font-size: 7vw;
+  font-weight: bold;
+  letter-spacing: 6px;
+  text-align: center;
+  font-family: 'Dancing Script', cursive;
+}
+.content-section {
+  min-height: 60vh;
+  margin: 0 auto 48px;
+  max-width: 800px;
+  padding: 48px 18px 36px;
+}
+.content-section h2 {
+  color: #b30059;
+  text-align: center;
+  margin-bottom: 18px;
+}
+.iman-title {
+  font-family: 'Yeseva One', serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #b30059;        /* rose foncé */
+  text-align: center;
+  margin-bottom: 0em;
+}
+
+.iman-paragraph {
+  font-family: Arial, sans-serif;
+  font-size: 1.15rem;
+  color: #333;
+  text-align: center;
+  max-width: 700px;
+  margin-top: 0;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+  padding: 0 10px;       /* pour un peu de marge sur mobile */
+}
+
+.polaroid-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 50px;
+  width: 100%;
+}
+.polaroid {
+  background-color: white;
+  padding: 10px 10px 20px 10px; /* Plus de padding en bas */
+  width: 180px;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ccc;
+  transition: transform 0.3s ease;
+  aspect-ratio: 3/4;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.polaroid img {
+  width: 100%;
+  height: 200px;            /* Hauteur fixe pour uniformiser */
+  object-fit: cover;        /* Rogne l'image pour remplir */
+  object-position: center;  /* Centré */
+  display: block;
+  border-bottom: 8px solid white; /* Pour simuler la bande blanche Polaroïd */
+}
+
+.polaroid:hover {
+  transform: scale(1.05) rotate(0deg) !important;
+  z-index: 10;
+}
+
+/*debut*/
+
+.carousel {
+  position: relative;
+  width: 800px;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.carousel-slide {
+  object-fit: contain;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  color: white;
+  background: #000;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.slide1 { background-color: #777; }
+.slide2 { background-color: #666; }
+.slide3 { background-color: #555; }
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2em;
+  cursor: pointer;
+  padding: 10px 20px;
+  z-index: 1;
+  transition: background 0.3s;
+}
+
+.carousel-btn:hover {
+  color: #ccc;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+/* fin */
+
+.slideshow {
+  width: 90vw;
+  max-width: 600px;
+  height: 50vw;
+  max-height: 350px;
+  min-height: 200px;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  background: #fff;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.slides {
+  display: flex;
+  width: 2000%; /* 20 images */
+  height: 100%;
+  animation: slide 100s infinite; /* 100s soit 5s par image */
+}
+
+.slides img {
+  width: 100vw;
+  max-width: 600px;
+  height: 50vw;
+  max-height: 350px;
+  min-height: 200px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* Keyframes : 20 étapes, chaque image prend env. 5% du temps */
+@keyframes slide {
+  0%    { transform: translateX(0%); }
+  4%    { transform: translateX(0%); }
+
+  /* Ensuite pour chaque tranche de 5% :
+     visible 4% à 5%, transition entre 5% et 9% à la prochaine image */
+
+  5%    { transform: translateX(-5%); }
+  9%    { transform: translateX(-5%); }
+
+  10%   { transform: translateX(-10%); }
+  14%   { transform: translateX(-10%); }
+
+  15%   { transform: translateX(-15%); }
+  19%   { transform: translateX(-15%); }
+
+  20%   { transform: translateX(-20%); }
+  24%   { transform: translateX(-20%); }
+
+  25%   { transform: translateX(-25%); }
+  29%   { transform: translateX(-25%); }
+
+  30%   { transform: translateX(-30%); }
+  34%   { transform: translateX(-30%); }
+
+  35%   { transform: translateX(-35%); }
+  39%   { transform: translateX(-35%); }
+
+  40%   { transform: translateX(-40%); }
+  44%   { transform: translateX(-40%); }
+
+  45%   { transform: translateX(-45%); }
+  49%   { transform: translateX(-45%); }
+
+  50%   { transform: translateX(-50%); }
+  54%   { transform: translateX(-50%); }
+
+  55%   { transform: translateX(-55%); }
+  59%   { transform: translateX(-55%); }
+
+  60%   { transform: translateX(-60%); }
+  64%   { transform: translateX(-60%); }
+
+  65%   { transform: translateX(-65%); }
+  69%   { transform: translateX(-65%); }
+
+  70%   { transform: translateX(-70%); }
+  74%   { transform: translateX(-70%); }
+
+  75%   { transform: translateX(-75%); }
+  79%   { transform: translateX(-75%); }
+
+  80%   { transform: translateX(-80%); }
+  84%   { transform: translateX(-80%); }
+
+  85%   { transform: translateX(-85%); }
+  89%   { transform: translateX(-85%); }
+
+  90%   { transform: translateX(-90%); }
+  94%   { transform: translateX(-90%); }
+
+  95%   { transform: translateX(-95%); }
+  99%   { transform: translateX(-95%); }
+
+  100%  { transform: translateX(0%); }
+}
+
+.video-container {
+  position: relative;
+  width: 100%;             /* occupe toute la largeur disponible */
+  max-width: 360px;        /* largeur max d'un smartphone type */
+  padding-bottom: 56.25%;  /* ratio 16:9 (9/16 = 0.5625) */
+  height: 0;
+  margin: 0 auto;          /* centre horizontalement */
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+}
+
+.video-container video,
+.video-container iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0;
+  border-radius: 16px;
+  object-fit: cover;       /* évite déformation */
+}
+
+.friend-notes-section {
+  max-width: 800px;
+  margin: 4rem auto 2rem auto;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.notes-title {
+  font-family: 'Yeseva One', 'Caveat', cursive, sans-serif;
+  font-size: 0.5rem;
+  margin-bottom: 2rem;
+  color: #B30059;
+  letter-spacing: 0.03em;
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  justify-content: center;
+}
+
+.note {
+  width: 100%; /* prend toute la place de la cellule */
+  max-width: none; /* pour ne pas brider */
+  min-height: 90px;
+  padding: 18px 16px 20px 16px;
+  min-width: 28%;   /* ~un tiers moins marge */
+  border-radius: 12px 32px 16px 18px;
+  box-shadow: 0 3px 18px 0 rgba(0,0,0,0.13), 0 2px 0 #eee inset;
+  font-family: 'Caveat', 'Shadows Into Light', cursive, Arial, sans-serif;
+  font-size: 0.5rem;
+  line-height: 1.4;
+  text-align: left;
+  position: relative;
+  background: #ffe76a;
+  margin-bottom: 18px;
+  white-space: pre-line;
+  transition: transform 0.18s;
+  cursor: default;
+}
+
+.note .author {
+  display: block;
+  font-size: 1rem;
+  margin-top: 9px;
+  font-family: inherit;
+  color: #444;
+  opacity: 0.74;
+}
+
+.sticky-yellow    { background: #ffe76a; color: #493d11; }
+.sticky-pink      { background: #ffbfc9; color: #8f2035; }
+.sticky-blue      { background: #92d2f7; color: #20507a; }
+.sticky-green     { background: #b3ecb4; color: #2b5138; }
+.sticky-orange    { background: #ffd68a; color: #6e3d18; }
+
+.note:nth-child(1)  { transform: rotate(-3deg);}
+.note:nth-child(2)  { transform: rotate(4deg);}
+.note:nth-child(3)  { transform: rotate(-2deg);}
+.note:nth-child(4)  { transform: rotate(5deg);}
+.note:nth-child(5)  { transform: rotate(-4deg);}
+.note:nth-child(6)  { transform: rotate(4deg);}
+.note:nth-child(7)  { transform: rotate(-2deg);}
+.note:nth-child(8)  { transform: rotate(2deg);}
+.note:nth-child(9)  { transform: rotate(-1deg);}
+.note:nth-child(10) { transform: rotate(5deg);}
+.note:nth-child(11) { transform: rotate(-4deg);}
+.note:nth-child(12) { transform: rotate(1deg);}
+.note:nth-child(13) { transform: rotate(-2deg);}
+.note:nth-child(14) { transform: rotate(3deg);}
+.note:nth-child(15) { transform: rotate(-3deg);}
+.note:hover {
+  box-shadow: 0 8px 36px 0 rgba(0,0,0,0.18);
+  z-index: 2;
+  transform: scale(1.06) rotate(0deg);
+}
+
+.mute-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 1000;
+  user-select: none;
+}
+
+/* Sélectionne le bouton par son ID ou sa classe, ici exemple avec #muteBtn */
+#muteBtn {
+  font-size: 1.5rem;   /* taille du texte/icône (augmenter si besoin) */
+  padding: 12px 16px;  /* agrandit la zone cliquable */
+  border-radius: 8px;  /* pour un joli arrondi (optionnel) */
+}
+
+.music-notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(179, 0, 89, 0.9);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 24px;
+  font-weight: bold;
+  font-family: sans-serif;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  z-index: 1000;
+  user-select: none;
+}
+
+/* ======================================
+   MEDIA QUERIES POUR RESPONSIVE DESIGN
+   ====================================== */
+
+/* Tablettes et petits écrans (768px et moins) */
+@media screen and (max-width: 768px) {
+
+  /* Navigation */
+  .navbar ul {
+    flex-direction: column;
+    padding: 10px 0;
+  }
+
+  .navbar li {
+    margin: 5px 0;
+  }
+
+  .navbar a {
+    padding: 12px 0;
+    font-size: 1rem;
+  }
+
+  /* Header */
+  .header-nom {
+    font-size: 12vw;
+    letter-spacing: 3px;
+    padding: 0 15px;
+  }
+
+  /* Titre et paragraphe */
+  .iman-title {
+    font-size: 2rem;
+    padding: 0 15px;
+  }
+
+  .iman-paragraph {
+    font-size: 1rem;
+    padding: 0 20px;
+  }
+
+  /* Content sections */
+  .content-section {
+    padding: 30px 15px 25px;
+    min-height: 40vh;
+  }
+
+  /* Galerie Polaroid */
+  .polaroid-gallery {
+    gap: 20px;
+    padding: 30px 15px;
+  }
+
+  .polaroid {
+    width: 140px;
+  }
+
+  .polaroid img {
+    height: 160px;
+  }
+
+  /* Carousel */
+  .carousel {
+    width: 95vw;
+    max-width: 500px;
+    height: 250px;
+    margin: 0 auto;
+  }
+
+  .carousel-btn {
+    font-size: 1.5em;
+    padding: 8px 15px;
+  }
+
+  /* Notes grid */
+  .notes-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .notes-title {
+    font-size: 1.8rem;
+  }
+
+  .note {
+    font-size: 1rem;
+    min-height: 80px;
+    padding: 15px 12px 18px 12px;
+  }
+
+  /* Boutons fixes */
+  .mute-button {
+    bottom: 15px;
+    right: 15px;
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .music-notification {
+    bottom: 15px;
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+
+/* Smartphones (480px et moins) */
+@media screen and (max-width: 480px) {
+
+  /* Navigation compacte */
+  .navbar ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 8px 5px;
+  }
+
+  .navbar li {
+    margin: 3px 8px;
+  }
+
+  .navbar a {
+    font-size: 0.9rem;
+    padding: 8px 0;
+  }
+
+  /* Header encore plus compact */
+  .header-nom {
+    font-size: 15vw;
+    letter-spacing: 2px;
+  }
+
+  /* Titres et textes */
+  .iman-title {
+    font-size: 1.6rem;
+    margin-bottom: 0.5em;
+  }
+
+  .iman-paragraph {
+    font-size: 0.95rem;
+    padding: 0 15px;
+  }
+
+  .content-section {
+    padding: 20px 10px 20px;
+  }
+
+  /* Galerie Polaroid en une seule colonne sur très petits écrans */
+  .polaroid-gallery {
+    gap: 15px;
+    padding: 20px 10px;
+  }
+
+  .polaroid {
+    width: 120px;
+  }
+
+  .polaroid img {
+    height: 140px;
+  }
+
+  /* Carousel plus petit */
+  .carousel {
+    width: 98vw;
+    height: 200px;
+  }
+
+  .carousel-btn {
+    font-size: 1.2em;
+    padding: 6px 10px;
+  }
+
+  .prev {
+    left: 5px;
+  }
+
+  .next {
+    right: 5px;
+  }
+
+  /* Notes en une seule colonne */
+  .notes-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .notes-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .note {
+    font-size: 0.9rem;
+    min-height: 70px;
+    padding: 12px 10px 15px 10px;
+    min-width: auto;
+  }
+
+  .note .author {
+    font-size: 0.8rem;
+    margin-top: 6px;
+  }
+
+  /* Friend notes section */
+  .friend-notes-section {
+    margin: 2rem auto 1rem auto;
+    padding: 0 0.5rem;
+  }
+
+  /* Boutons fixes plus petits */
+  .mute-button {
+    bottom: 10px;
+    right: 10px;
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  #muteBtn {
+    font-size: 1.2rem;
+    padding: 8px 12px;
+  }
+
+  .music-notification {
+    bottom: 10px;
+    padding: 8px 16px;
+    font-size: 12px;
+    border-radius: 20px;
+  }
+
+  /* Slideshow ajustements */
+  .slideshow {
+    width: 95vw;
+    height: 55vw;
+    min-height: 180px;
+  }
+
+  .slides img {
+    width: 95vw;
+    height: 55vw;
+    min-height: 180px;
+  }
+
+  /* Video container */
+  .video-container {
+    max-width: 320px;
+    padding-bottom: 60%;
+  }
+}
+
+/* Très petits écrans (320px et moins) */
+@media screen and (max-width: 320px) {
+
+  .header-nom {
+    font-size: 18vw;
+    letter-spacing: 1px;
+  }
+
+  .iman-title {
+    font-size: 1.4rem;
+  }
+
+  .iman-paragraph {
+    font-size: 0.9rem;
+  }
+
+  .polaroid {
+    width: 100px;
+  }
+
+  .polaroid img {
+    height: 120px;
+  }
+
+  .carousel {
+    height: 180px;
+  }
+
+  .note {
+    font-size: 0.85rem;
+    padding: 10px 8px 12px 8px;
+  }
+
+  .notes-title {
+    font-size: 1.3rem;
+  }
+}
